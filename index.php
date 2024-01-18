@@ -19,5 +19,8 @@
 </head>
 <body>
     <h1>Hello World</h1>
+
+    
+    <script type="module" src="/assets/js/auth.js"></script>
 </body>
 </html>
