@@ -1,9 +1,17 @@
 <?php
+
+$file = $_ENV['APP_PATH'] . "/config.json";
+if (!file_exists($file)) {
+    die(json_encode(["error" => "Config file not found!"]));
+}
+$json = json_decode(file_get_contents($file), true);
+
+
 // Database configuration
-$DB_HOST = "127.0.0.1";
-$DB_USER = "root";
-$DB_PASSWORD = "";
-$DB_NAME = "";
+$DB_HOST = $json["host"];
+$DB_USER = $json["user"];
+$DB_PASSWORD = $json["password"];
+$DB_NAME = $json["database"];
 
 if (!isset($_ENV["HASH_SALT"]) || $_ENV["HASH_SALT"] == "") {
     // Hash salt
@@ -23,7 +31,7 @@ if (!isset($_ENV["HASH_SALT"]) || $_ENV["HASH_SALT"] == "") {
 function createGuid()
 {
     $guid = getGUID();
-    file_put_contents("hash", $guid);
+    file_put_contents($_SERVER['DOCUMENT_ROOT'] . "hash", $guid);
     $_ENV["HASH_SALT"] = $guid;
 }
 
