@@ -1,10 +1,51 @@
-:root {
-    --primary: #c82333;
-}
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800,900);
 
 body {
-    font-family: 'Poppins';
-    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color: #A7A1AE;
+    background-color: #1F2739;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-block: 0.5rem;
+    padding: 0;
+}
+
+
+h1 {
+    font-size: 3em;
+    font-weight: 300;
+    line-height: 1em;
+    text-align: center;
+    color: #4DC3FA;
+}
+
+h2 {
+    font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    line-height: 1em;
+    padding-bottom: 2em;
+    color: #FB667A;
+}
+
+h2 a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FB667A;
+    text-decoration: none;
+}
+
+.blue {
+    color: #185875;
+}
+
+.yellow {
+    color: #FFF842;
 }
 
 .row, .col, .center, .fill, .grid {
@@ -33,6 +74,13 @@ body {
     width: 100%;
     width: -webkit-fill-available;
     width: -moz-available;
+}
+
+.loading-body {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    inset: 0;
+    position: absolute;
 }
 
 .loading {
@@ -79,4 +127,9 @@ body {
     padding: 1rem;
     max-height: 200px;
     overflow-y: scroll;
+}
+
+::selection, ::-moz-selection {
+    background: #42baff;
+    color: #0e240a;
 }
