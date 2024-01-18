@@ -1,0 +1,81 @@
+.table-content {
+    width: 90%;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+table {
+    width: calc(100% - 1rem);
+    border-spacing: 2px;
+}
+
+table thead {
+    background-color: transparent;
+    color: #214f65;
+    font-weight: bold;
+}
+
+table td {
+    padding: 2rem 10px;
+    outline: 3.5px solid #1F2739
+}
+
+table tbody tr td:first-child {
+    color: #bd5974;
+    font-weight: 700;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #323c50;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #2d3345;
+}
+
+table tbody tr:hover {
+    background-color: #454a53;
+}
+
+table tbody tr td {
+    transition: transform, box-shadow, background-color, color, outline;
+    transition-duration: 0.4s;
+    transition-timing-function: line;
+}
+
+table tbody tr td:hover {
+    background-color: #FFF842;
+    color: #403E10;
+    font-weight: bold;
+    outline: none;
+
+    box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+    cursor: pointer;
+    padding: 2rem 4px;
+}
+
+td.additional_information, td.notes {
+    max-width: 200px;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+tbody {
+    padding-top: 5px;
+    display: block;
+    height: 100%;
+    overflow: auto;
+
+    
+    max-height: calc(100dvh - 400px);
+    min-height: 300px;
+    overflow-y: auto;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
