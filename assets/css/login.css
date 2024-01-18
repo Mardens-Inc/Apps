@@ -1,0 +1,24 @@
+#login-form {
+    width: 35%;
+    margin: auto;
+    height: 95dvh;
+    flex-wrap: nowrap;
+}
+
+#login-form input {
+    width: calc(100% - 1rem);
+}
+
+#login-form .floating-input {
+    width: 100%;
+}
+
+#login-form toggle{
+    width: 70%;
+}
+
+#login-form button {
+    width: 50%;
+    min-width: 200px;
+    margin-top: 1rem;
+}
