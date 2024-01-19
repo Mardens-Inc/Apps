@@ -1,4 +1,4 @@
-input {
+input, dropdown {
     height: 2rem;
     outline: none;
     border: none;
@@ -16,9 +16,59 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     transition: background-color 5000s ease-in-out 0s;
 }
 
-input:-webkit-autofill ~ label, input:-webkit-autofill:hover ~ label, input:-webkit-autofill:focus ~ label{
-    color: #1c222e;
+input:-webkit-autofill~label, input:-webkit-autofill:hover~label, input:-webkit-autofill:focus~label {
+    color: #323c50;
 }
+
+select {
+    display: none;
+}
+
+dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+
+dropdown .value {
+    color: #a7a1ae;
+}
+
+dropdown dropdown-items {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    background-color: #323c50;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    transform: translateY(calc(100% + 5px));
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.5);
+    max-height: 150px;
+    min-height: 50px;
+    overflow-y: scroll;
+}
+
+dropdown:focus dropdown-items {
+    display: flex;
+}
+
+dropdown dropdown-items dropdown-item {
+    padding: 5px;
+    cursor: pointer;
+    padding: 1rem;
+    transition: background-color 0.2s;
+}
+
+dropdown dropdown-items dropdown-item.selected {
+    background-color: #293244;
+}
+
+dropdown dropdown-items dropdown-item:hover {
+    background-color: #222938;
+}
+
+
 
 .floating-input {
     position: relative;
@@ -26,7 +76,7 @@ input:-webkit-autofill ~ label, input:-webkit-autofill:hover ~ label, input:-web
     width: 100%;
 }
 
-.floating-input label {
+.floating-input label, dropdown .name, dropdown .value {
     position: absolute;
     top: 4px;
     left: 0;
@@ -46,7 +96,7 @@ input:-webkit-autofill ~ label, input:-webkit-autofill:hover ~ label, input:-web
     opacity: 0;
 }
 
-.floating-input input:not(:placeholder-shown)~label {
+.floating-input input:not(:placeholder-shown)~label, dropdown[value] .name {
     top: -1rem;
     left: 0;
     font-size: .82rem;
@@ -96,8 +146,12 @@ dialog {
     border: none;
     width: 80%;
     height: 80%;
-    background-color: #333e52;
+    background-color: #181d26;
     color: white;
+}
+
+dialog h1 {
+    font-size: 5rem;
 }
 
 dialog h2 {
@@ -193,7 +247,7 @@ toggle {
     transition: background-color 0.2s;
 }
 
-toggle:hover{
+toggle:hover {
     background: hsla(219, 23%, 86%, 10%)
 }
 
@@ -236,4 +290,3 @@ toggle::after {
 toggle[value=true]::after {
     transform: translateX(-5px);
 }
-
