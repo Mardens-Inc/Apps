@@ -91,6 +91,7 @@
     },
     "required": [
         "name",
-        "description"
+        "description",
+        "options"
     ]
 }
