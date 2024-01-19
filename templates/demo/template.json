@@ -1,0 +1,114 @@
+{
+    "name": "Demo",
+    "description": "This is a demo template",
+    "hidden": false,
+    "options": [
+        {
+            "name": "Toggle",
+            "type": "boolean",
+            "default": false,
+            "description": "Toggle the table"
+        },
+        {
+            "name": "Select",
+            "type": "select",
+            "options": [
+                {
+                    "name": "Option 1",
+                    "value": "option1"
+                },
+                {
+                    "name": "Option 2",
+                    "value": "option2"
+                },
+                {
+                    "name": "Option 3",
+                    "value": "option3"
+                }
+            ],
+            "default": "option1",
+            "description": "Select an option"
+        },
+        {
+            "name": "Text",
+            "type": "text",
+            "default": "Hello World",
+            "description": "Enter some text"
+        },
+        {
+            "name": "Number",
+            "type": "number",
+            "default": 1,
+            "description": "Enter a number"
+        },
+        {
+            "name": "Color",
+            "type": "color",
+            "default": "#ff0000",
+            "description": "Select a color"
+        },
+        {
+            "name": "Date",
+            "type": "date",
+            "default": "2019-01-01",
+            "description": "Select a date"
+        },
+        {
+            "name": "Time",
+            "type": "time",
+            "default": "12:00",
+            "description": "Select a time"
+        },
+        {
+            "name": "Datetime",
+            "type": "datetime",
+            "default": "2019-01-01T12:00",
+            "description": "Select a datetime"
+        },
+        {
+            "name": "Textarea",
+            "type": "textarea",
+            "default": "Hello World",
+            "description": "Enter some text"
+        },
+        {
+            "name": "Table",
+            "type": "table",
+            "default": [
+                {
+                    "name": "Row 1",
+                    "value": "row1"
+                },
+                {
+                    "name": "Row 2",
+                    "value": "row2"
+                },
+                {
+                    "name": "Row 3",
+                    "value": "row3"
+                }
+            ],
+            "description": "Enter some text"
+        },
+        {
+            "name": "Array",
+            "type": "array",
+            "default": [
+                "Item 1",
+                "Item 2",
+                "Item 3"
+            ],
+            "description": "Enter some text"
+        },
+        {
+            "name": "File",
+            "type": "file",
+            "default": "https://www.w3schools.com/html/pic_trulli.jpg",
+            "extensions": [
+                "jpg",
+                "png"
+            ],
+            "description": "Enter some text"
+        }
+    ]
+}
