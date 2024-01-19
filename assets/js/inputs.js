@@ -79,11 +79,62 @@ $("toggle").on("click", (e) => {
     target.trigger("toggle", [{ value: !value }]);
 });
 
-
-function startLoading(){
-    $("body").append(`<div class="loading-body"><div class="loading"></div></div>`)
+function startLoading() {
+    $("body").append(`<div class="loading-body"><div class="loading"></div></div>`);
 }
 
-function stopLoading(){
-    $("body .loading-body").remove()
+function stopLoading() {
+    $("body .loading-body").remove();
 }
+
+$(document).ready(() => {
+    $("select").each((_, element) => {
+        let target = $(element);
+        let options = target.find("option");
+        let name = target.attr("name") == undefined ? "" : target.attr("name");
+        let id = target.attr("id") == undefined ? "" : target.attr("id");
+        let classes = target.attr("class") == undefined ? "" : target.attr("class");
+        let selected = target.find("option[select]");
+
+        let dropdown = $(`<dropdown id="${id}" class="${classes}" tabindex="-1"><div class="name">${name}</div><div class="value"></div></dropdown>`);
+        let dropdownItems = $(`<dropdown-items></dropdown-items>`);
+        dropdown.append(dropdownItems);
+        dropdown.attr("value", selected.attr("value"));
+        dropdown.find(".value").html(selected.html());
+
+        options.each((_, option) => {
+            let dropdownItem = $(`<dropdown-item value="${$(option).attr("value")}">${$(option).html()}</dropdown-item>`);
+
+            dropdownItem.on("click", (e) => {
+                let dropdownItem = $(e.target);
+                let dropdown = dropdownItem.parent().parent();
+                if (dropdownItem.hasClass("selected")) {
+                    dropdownItem.removeClass("selected");
+                    dropdown.attr("value", null);
+                    dropdown.find(".value").html("");
+                } else {
+                    dropdown.find("dropdown-item.selected").removeClass("selected");
+                    dropdownItem.addClass("selected");
+                    dropdown.attr("value", dropdownItem.attr("value"));
+                    dropdown.find(".value").html(dropdownItem.html());
+                }
+                dropdown.trigger("change", [{ value: dropdownItem.attr("value") }]);
+                dropdown.blur();
+            });
+
+            dropdownItems.append(dropdownItem);
+
+            if ($(option).attr("select") != undefined) {
+                dropdownItem.addClass("selected");
+                $(document).on("dropdowns-loaded", () => {
+                    dropdown.trigger("change", [{ value: dropdownItem.attr("value") }]);
+                });
+            }
+        });
+
+        // replace target with dropdown
+        target.replaceWith(dropdown);
+
+        $(document).trigger("dropdowns-loaded");
+    });
+});
