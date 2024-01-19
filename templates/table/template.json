@@ -1,0 +1,6 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Mardens-Inc/Apps/main/assets/json/template-schema.json",
+    "name": "Table",
+    "description": "A simple table",
+    "options": []
+}
