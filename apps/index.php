@@ -31,43 +31,101 @@
 </head>
 
 <body>
-    <button id="logout"> <i class="fa fa-lock"></i> <span>Logout</span></button>
-    <h1>Apps</h1>
+    <header>
+        <button id="logout"> <i class="fa fa-lock"></i> <span>Logout</span></button>
+        <h1><span class="yellow">Apps</span></h1>
+        <h2>Created for Mardens Surplus & Salvage.</h2>
+        <form action="javascript:void(0);" class="search-area">
+            <input type="search" name="search" id="search" required placeholder="Search...">
+            <button type="submit" name="submit" id="submit"><i class="fas fa-search"></i></button>
+            <div id="add-new" class="button"><i class="fas fa-add"></i></div>
+        </form>
+    </header>
     <div class="grid" id="app-list">
         <?php
         $apps = scandir(__DIR__);
-        foreach ($apps as $app) {
-            if (is_dir($app) && file_exists("$app/app.json") && file_exists("$app/index.php")) {
-                $json = json_decode(file_get_contents("$app/app.json"), true);
+        for ($i = 0; $i < 20; $i++) {
 
-                $name = $json["name"];
-                $icon = $json["icon"];
-                if ($icon == null) {
-                    $icon = "unknown.svg";
-                }
-                $description = $json["description"];
 
-                if ($app == "." || $app == ".." || $app == "index.php") continue;
-                echo "
+            foreach ($apps as $app) {
+                if (is_dir($app) && file_exists("$app/app.json") && file_exists("$app/index.php")) {
+                    $json = json_decode(file_get_contents("$app/app.json"), true);
+
+                    $name = $json["name"];
+                    $icon = $json["icon"];
+                    if ($icon == null) {
+                        $icon = "unknown.svg";
+                    }
+                    $description = $json["description"];
+
+                    if ($app == "." || $app == ".." || $app == "index.php") continue;
+                    echo "
                 <a class='app-item' href='/apps/$app/' title='$name - $description'>
                 <img src='/assets/images/icons/$icon' />
                 <p class='name'>$name</p>
-                    <p class='description'>$description</p>
-                    </a>";
+                <p class='description'>$description</p>
+                </a>";
+                }
             }
         }
         ?>
     </div>
 
 
+    <dialog id="add-item-modal">
+        <form action="javascript:void(0);">
+            <h1>Add Item</h1>
+            <div class="floating-input col">
+                <input type="text" name="name" id="name" required placeholder="">
+                <label for="name">Name</label>
+            </div>
+            <div class="col">
+                <select name="Template" id="template">
+                    <?php
+                    $templates = scandir($_SERVER['DOCUMENT_ROOT'] . "/templates");
+                    $tmp = false;
+                    foreach ($templates as $template) {
+                        if ($template == "." || $template == ".." || $template == "index.php") continue;
+                        if (is_dir($_SERVER['DOCUMENT_ROOT'] . "/templates/$template")) {
+                            if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json")) {
+                                $json = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json"), true);
+                                $name = $json["name"];
+                                if ($tmp == false) {
+                                    $tmp = true;
+                                    echo "<option select value='$template'>$name</option>";
+                                } else {
+                                    echo "<option value='$template'>$name</option>";
+                                }
+                            }
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
 
+            <div id="template-options">
+
+            </div>
+
+        </form>
+    </dialog>
+
+
+    <script>
+        $("#add-item-modal")[0].showModal();
+    </script>
+
+
+
+
+    <script src="/assets/js/apps-list.js"></script>
     <script src="/assets/js/inputs.min.js"></script>
-
     <script>
         startLoading();
     </script>
 
     <script type="module" src="/assets/js/auth.js"></script>
+
 </body>
 
 </html>
