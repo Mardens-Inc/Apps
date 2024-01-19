@@ -1,5 +1,4 @@
 const url = `${window.location.protocol}//auth${window.location.hostname.replace(window.location.hostname.split(".")[0], "")}/`;
-console.log(url)
 import(url)
     .then(async (Authentication) => {
         // You can use Authentication in this block
@@ -8,7 +7,6 @@ import(url)
 
         try {
             let response = await auth.loginWithTokenFromCookie();
-            console.log(response);
             if (response == false) {
                 if (window.location.pathname != "/") {
                     window.location.href = "/";
@@ -27,10 +25,10 @@ import(url)
         }
         stopLoading();
 
-        $("#login-form").on("submit", async (e) => {
+        $("#login-form").on("submit", async () => {
             startLoading();
             try {
-                var data = await auth.login($("#login-form #username").val(), $("#login-form #password").val());
+                await auth.login($("#login-form #username").val(), $("#login-form #password").val());
                 window.location.href = "/apps";
             } catch (error) {
                 console.log(error.responseJSON);
