@@ -1,9 +1,10 @@
-#app-list{
+#app-list {
     width: 75%;
     margin: 0 auto;
     /* outline: 1px solid red; */
     gap: 1rem;
-    max-height: calc(100dvh - 10.5rem);
+    max-height: calc(100dvh - 18rem);
+    min-height: 200px;
     padding: 1rem;
     overflow-y: auto;
 }
@@ -41,4 +42,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.search-area {
+    margin: auto;
+    width: 25%;
+    min-width: 500px;
+    white-space: nowrap;
+}
+
+.search-area input {
+    width: calc(100% - 6.5rem);
+    height: 100%;
 }
