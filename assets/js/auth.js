@@ -32,6 +32,7 @@ import(url)
                 window.location.href = "/apps";
             } catch (error) {
                 console.log(error.responseJSON);
+                $("#login-form .error").html(error.responseJSON.message);
             }
             stopLoading();
         });
