@@ -229,7 +229,7 @@ dialog .content {
 }
 
 
-toggle {
+toggle-field {
     position: relative;
     display: flex;
     justify-content: start;
@@ -247,11 +247,11 @@ toggle {
     transition: background-color 0.2s;
 }
 
-toggle:hover {
+toggle-field:hover {
     background: hsla(219, 23%, 86%, 10%)
 }
 
-toggle::before {
+toggle-field::before {
     content: '';
     position: absolute;
     right: 5px;
@@ -266,11 +266,11 @@ toggle::before {
     transition: background-color 0.2s;
 }
 
-toggle:hover::before {
+toggle-field:hover::before {
     background-color: #222938;
 }
 
-toggle::after {
+toggle-field::after {
     content: '';
     position: absolute;
     right: 3px;
@@ -287,6 +287,6 @@ toggle::after {
     transition-duration: 200ms;
 }
 
-toggle[value=true]::after {
+toggle-field[value=true]::after {
     transform: translateX(-5px);
 }
