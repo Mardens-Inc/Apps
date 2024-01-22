@@ -51,6 +51,9 @@
                             }
                         ]
                     },
+                    "condition":{
+                        "type": "string"
+                    },
                     "description": {
                         "type": "string"
                     },
@@ -85,7 +88,6 @@
                 "required": [
                     "name",
                     "type",
-                    "default",
                     "description"
                 ]
             }
