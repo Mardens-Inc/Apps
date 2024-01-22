@@ -72,35 +72,6 @@
             "description": "Enter some text"
         },
         {
-            "name": "Table",
-            "type": "table",
-            "default": [
-                {
-                    "name": "Row 1",
-                    "value": "row1"
-                },
-                {
-                    "name": "Row 2",
-                    "value": "row2"
-                },
-                {
-                    "name": "Row 3",
-                    "value": "row3"
-                }
-            ],
-            "description": "Enter some text"
-        },
-        {
-            "name": "Array",
-            "type": "array",
-            "default": [
-                "Item 1",
-                "Item 2",
-                "Item 3"
-            ],
-            "description": "Enter some text"
-        },
-        {
             "name": "File",
             "type": "file",
             "default": "https://www.w3schools.com/html/pic_trulli.jpg",
