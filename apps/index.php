@@ -38,7 +38,7 @@
         <form action="javascript:void(0);" class="search-area">
             <input type="search" name="search" id="search" required placeholder="Search...">
             <button type="submit" name="submit" id="submit"><i class="fas fa-search"></i></button>
-            <div id="add-new" class="button"><i class="fas fa-add"></i></div>
+            <div id="add-new" class="button" onclick="$(`#add-item-modal`)[0].showModal()"><i class="fas fa-add"></i></div>
         </form>
     </header>
     <div class="grid" id="app-list">
@@ -73,6 +73,7 @@
 
 
     <dialog id="add-item-modal">
+        <button onclick="$(`#add-item-modal`)[0].close();" style="position: absolute; right: 1rem"><i class="fa fa-close"></i></button>
         <form action="javascript:void(0);">
             <h1>Add Item</h1>
             <div class="floating-input col">
@@ -80,31 +81,24 @@
                 <label for="name">Name</label>
             </div>
             <div class="col">
-            <drop-down>
-                hello world
-            </drop-down>    
-            
-            <select name="Template" id="template">
-                    <?php
-                    $templates = scandir($_SERVER['DOCUMENT_ROOT'] . "/templates");
-                    $tmp = false;
-                    foreach ($templates as $template) {
-                        if ($template == "." || $template == ".." || $template == "index.php") continue;
-                        if (is_dir($_SERVER['DOCUMENT_ROOT'] . "/templates/$template")) {
-                            if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json")) {
-                                $json = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json"), true);
-                                $name = $json["name"];
-                                if ($tmp == false) {
-                                    $tmp = true;
-                                    echo "<option select value='$template'>$name</option>";
-                                } else {
-                                    echo "<option value='$template'>$name</option>";
+                <drop-down label="Template" id="template">
+                    <div class="name">Template</div>
+                    <div class="dropdown-items">
+                        <?php
+                        $templates = scandir($_SERVER['DOCUMENT_ROOT'] . "/templates");
+                        foreach ($templates as $template) {
+                            if ($template == "." || $template == ".." || $template == "index.php") continue;
+                            if (is_dir($_SERVER['DOCUMENT_ROOT'] . "/templates/$template")) {
+                                if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json")) {
+                                    $json = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json"), true);
+                                    $name = $json["name"];
+                                    echo "<dropdown-option value='$template'>$name</dropdown-option>";
                                 }
                             }
                         }
-                    }
-                    ?>
-                </select>
+                        ?>
+                    </div>
+                </drop-down>
             </div>
 
             <div id="template-options">
