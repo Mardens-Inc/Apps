@@ -44,28 +44,24 @@
     <div class="grid" id="app-list">
         <?php
         $apps = scandir(__DIR__);
-        for ($i = 0; $i < 20; $i++) {
+        foreach ($apps as $app) {
+            if (is_dir($app) && file_exists("$app/app.json") && file_exists("$app/index.php")) {
+                $json = json_decode(file_get_contents("$app/app.json"), true);
 
+                $name = $json["name"];
+                $icon = $json["icon"];
+                if ($icon == null) {
+                    $icon = "unknown.svg";
+                }
+                $description = $json["description"];
 
-            foreach ($apps as $app) {
-                if (is_dir($app) && file_exists("$app/app.json") && file_exists("$app/index.php")) {
-                    $json = json_decode(file_get_contents("$app/app.json"), true);
-
-                    $name = $json["name"];
-                    $icon = $json["icon"];
-                    if ($icon == null) {
-                        $icon = "unknown.svg";
-                    }
-                    $description = $json["description"];
-
-                    if ($app == "." || $app == ".." || $app == "index.php") continue;
-                    echo "
+                if ($app == "." || $app == ".." || $app == "index.php") continue;
+                echo "
                 <a class='app-item' href='/apps/$app/' title='$name - $description'>
                 <img src='/assets/images/icons/$icon' />
                 <p class='name'>$name</p>
                 <p class='description'>$description</p>
                 </a>";
-                }
             }
         }
         ?>
@@ -110,7 +106,7 @@
 
 
     <script>
-        $("#add-item-modal")[0].showModal();
+        // $("#add-item-modal")[0].showModal();
     </script>
 
 
