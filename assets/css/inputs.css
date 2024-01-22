@@ -6,8 +6,9 @@ input, drop-down, textarea {
     background-color: #323c50;
     font-weight: 600;
     color: white;
-    margin: 5px;
+    margin: 5px 0;
     font-family: inherit;
+    font-size: .9rem;
 }
 
 textarea {
@@ -127,6 +128,7 @@ drop-down:focus::before {
     position: relative;
     margin-top: 5px;
     width: 100%;
+    background-color: #323c50;
 }
 
 .floating-input label, drop-down .name, drop-down .value {
@@ -145,16 +147,20 @@ drop-down:focus::before {
     transition: all 0.2s ease;
 }
 
-.floating-input input::placeholder,.floating-input textarea::placeholder {
+.floating-input input::placeholder, .floating-input textarea::placeholder {
     opacity: 0;
 }
 
-.floating-input input:not(:placeholder-shown)~label, .floating-input textarea:not(:placeholder-shown)~label, drop-down[value] .name {
+.floating-input input:not(:placeholder-shown)~label, .floating-input textarea:not(:placeholder-shown)~label, drop-down[value] .name, .floating-input.array-input label {
     top: -1rem;
     left: 0;
     font-size: .82rem;
     opacity: 1;
     font-weight: 700;
+}
+
+.floating-input.array-input {
+    padding-top: 1rem;
 }
 
 input::placeholder, textarea::placeholder {
@@ -279,7 +285,7 @@ dialog .content {
 }
 
 
-toggle-field {
+toggle-field, file-input, .color-input {
     position: relative;
     display: flex;
     justify-content: start;
@@ -341,28 +347,32 @@ toggle-field[value=true]::after {
     transform: translateX(-5px);
 }
 
-.file-input{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+file-input, .color-input {
     flex-direction: row;
-    width: calc(100% - 2rem);
-    margin-block: 1rem;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    min-width: calc(5rem + 70px);
-    padding: 1rem;
-    transition: background-color 0.2s;
 }
 
-.file-input label {
+
+file-input label {
     cursor: pointer;
 }
 
-.file-input:hover {
+file-input:hover, .color-input:hover {
     background: hsla(219, 23%, 86%, 10%);
+    cursor: pointer;
+}
+
+.color-input:hover {
+    cursor: default;
+}
+
+.floating-input.array-input .items .item {
+    background-color: hsla(219, 23%, 86%, 10%);
+    padding: .5rem;
+    margin: 2px;
+    transition: background-color 0.2s;
+}
+
+.floating-input.array-input .items .item:hover {
+    background-color: hsla(219, 23%, 16%, 100%);
     cursor: pointer;
 }
