@@ -80,7 +80,11 @@
                 <label for="name">Name</label>
             </div>
             <div class="col">
-                <select name="Template" id="template">
+            <drop-down>
+                hello world
+            </drop-down>    
+            
+            <select name="Template" id="template">
                     <?php
                     $templates = scandir($_SERVER['DOCUMENT_ROOT'] . "/templates");
                     $tmp = false;
@@ -118,7 +122,7 @@
 
 
 
-    <script src="/assets/js/apps-list.js"></script>
+    <script type="module" src="/assets/js/apps-list.js"></script>
     <script src="/assets/js/inputs.min.js"></script>
     <script>
         startLoading();
