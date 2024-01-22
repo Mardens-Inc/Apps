@@ -1,4 +1,4 @@
-input, dropdown {
+input, drop-down, textarea {
     height: 2rem;
     outline: none;
     border: none;
@@ -7,6 +7,24 @@ input, dropdown {
     font-weight: 600;
     color: white;
     margin: 5px;
+    font-family: inherit;
+}
+
+textarea {
+    resize: none;
+    height: 150px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 /* Change autofill color */
@@ -14,6 +32,24 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     -webkit-text-fill-color: white;
     -webkit-box-shadow: 0 0 0px 1000px #495875 inset;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 64px;
+    aspect-ratio: 1;
+    padding: 5px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
 }
 
 input:-webkit-autofill~label, input:-webkit-autofill:hover~label, input:-webkit-autofill:focus~label {
@@ -24,17 +60,18 @@ select {
     display: none;
 }
 
-dropdown {
+drop-down {
     position: relative;
     cursor: pointer;
+    display: block;
 }
 
-
-dropdown .value {
-    color: #a7a1ae;
+drop-down .value {
+    color: white !important;
+    opacity: 1 !important;
 }
 
-dropdown dropdown-items {
+drop-down .dropdown-items {
     position: absolute;
     display: none;
     flex-direction: column;
@@ -49,23 +86,39 @@ dropdown dropdown-items {
     overflow-y: scroll;
 }
 
-dropdown:focus dropdown-items {
+drop-down:focus .dropdown-items {
     display: flex;
+    z-index: 1;
 }
 
-dropdown dropdown-items dropdown-item {
+drop-down .dropdown-items dropdown-option {
     padding: 5px;
     cursor: pointer;
     padding: 1rem;
     transition: background-color 0.2s;
 }
 
-dropdown dropdown-items dropdown-item.selected {
+drop-down .dropdown-items dropdown-option[selected] {
     background-color: #293244;
 }
 
-dropdown dropdown-items dropdown-item:hover {
+drop-down .dropdown-items dropdown-option:hover {
     background-color: #222938;
+}
+
+drop-down::before {
+    content: '\f078';
+    font-family: 'Font Awesome 5 Free';
+    opacity: 0.7;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s;
+}
+
+drop-down:focus::before {
+    transform: rotate(180deg) translateY(50%);
 }
 
 
@@ -76,7 +129,7 @@ dropdown dropdown-items dropdown-item:hover {
     width: 100%;
 }
 
-.floating-input label, dropdown .name, dropdown .value {
+.floating-input label, drop-down .name, drop-down .value {
     position: absolute;
     top: 4px;
     left: 0;
@@ -92,11 +145,11 @@ dropdown dropdown-items dropdown-item:hover {
     transition: all 0.2s ease;
 }
 
-.floating-input input::placeholder {
+.floating-input input::placeholder,.floating-input textarea::placeholder {
     opacity: 0;
 }
 
-.floating-input input:not(:placeholder-shown)~label, dropdown[value] .name {
+.floating-input input:not(:placeholder-shown)~label, .floating-input textarea:not(:placeholder-shown)~label, drop-down[value] .name {
     top: -1rem;
     left: 0;
     font-size: .82rem;
@@ -104,7 +157,7 @@ dropdown dropdown-items dropdown-item:hover {
     font-weight: 700;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
     color: #a7a1ae;
 }
 
@@ -148,6 +201,7 @@ dialog {
     height: 80%;
     background-color: #181d26;
     color: white;
+    overflow: scroll;
 }
 
 dialog h1 {
@@ -178,7 +232,6 @@ dialog fieldset {
     display: flex;
     flex-wrap: wrap;
     flex: 1 0 21%;
-    /* explanation below */
     margin: 1rem 4rem;
     margin-bottom: 2rem;
     border-color: hsla(219, 23%, 26%, 70%);
@@ -215,9 +268,6 @@ dialog fieldset .checkbox input {
     border: none;
 }
 
-dialog {
-    overflow: hidden;
-}
 
 dialog .content {
     overflow: scroll;
@@ -235,7 +285,7 @@ toggle-field {
     justify-content: start;
     align-items: center;
     flex-direction: row-reverse;
-    width: 100%;
+    width: calc(100% - 2rem);
     margin-block: 1rem;
     cursor: pointer;
     user-select: none;
@@ -289,4 +339,30 @@ toggle-field::after {
 
 toggle-field[value=true]::after {
     transform: translateX(-5px);
+}
+
+.file-input{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: calc(100% - 2rem);
+    margin-block: 1rem;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    min-width: calc(5rem + 70px);
+    padding: 1rem;
+    transition: background-color 0.2s;
+}
+
+.file-input label {
+    cursor: pointer;
+}
+
+.file-input:hover {
+    background: hsla(219, 23%, 86%, 10%);
+    cursor: pointer;
 }
