@@ -78,6 +78,9 @@
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "multiple": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
