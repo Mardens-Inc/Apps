@@ -45,7 +45,7 @@
             <input type="password" name="password" id="password" placeholder="Password" required>
             <label for="password">Password</label>
         </div>
-        <toggle id="show-password">Show Password</toggle>
+        <toggle-field id="show-password" value=true>Show Password</toggle-field>
         <button type="submit">Login</button>
     </form>
 
@@ -56,6 +56,7 @@
     </script>
 
     <script type="module" src="/assets/js/auth.js"></script>
+    <script type="module" src="/assets/js/doms/Toggle.js"></script>
 
 </body>
 
