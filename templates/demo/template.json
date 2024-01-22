@@ -1,4 +1,5 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Mardens-Inc/Apps/main/assets/json/template-schema.json",
     "name": "Demo",
     "description": "This is a demo template",
     "hidden": false,
@@ -24,12 +25,6 @@
             "description": "Select an option"
         },
         {
-            "name": "Toggle",
-            "type": "boolean",
-            "default": true,
-            "description": "Toggle the table"
-        },
-        {
             "name": "Text",
             "type": "text",
             "default": "Hello World",
@@ -40,12 +35,6 @@
             "type": "number",
             "default": 1,
             "description": "Enter a number"
-        },
-        {
-            "name": "Color",
-            "type": "color",
-            "default": "#ff0000",
-            "description": "Select a color"
         },
         {
             "name": "Date",
@@ -72,15 +61,35 @@
             "description": "Enter some text"
         },
         {
+            "name": "Array",
+            "type": "array",
+            "description": "Enter an array of strings",
+            "default": [
+                "Hello",
+                "World"
+            ]
+        },
+        {
+            "name": "Color",
+            "type": "color",
+            "default": "#ff0000",
+            "description": "Select a color"
+        },
+        {
             "name": "File",
             "type": "file",
-            "default": "https://www.w3schools.com/html/pic_trulli.jpg",
             "extensions": [
                 ".jpg",
                 ".png"
             ],
             "multiple": true,
-            "description": "Enter some text"
+            "description": "Upload a file"
+        },
+        {
+            "name": "Toggle",
+            "type": "boolean",
+            "default": true,
+            "description": "Toggle on/off"
         }
     ]
 }
