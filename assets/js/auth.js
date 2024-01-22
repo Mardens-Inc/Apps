@@ -35,7 +35,7 @@ import(url)
             }
             stopLoading();
         });
-        $("#login-form toggle#show-password").on("toggle", (_, data) => {
+        $("#login-form toggle-field#show-password").on("toggle", (_, data) => {
             const value = data.value;
             if (value) {
                 $("#login-form #password").attr("type", "text");
