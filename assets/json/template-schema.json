@@ -31,8 +31,6 @@
                             "time",
                             "datetime",
                             "textarea",
-                            "table",
-                            "array",
                             "file"
                         ]
                     },
