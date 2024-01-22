@@ -57,6 +57,9 @@
                     "description": {
                         "type": "string"
                     },
+                    "populated_from_url": {
+                        "type": "string"
+                    },
                     "options": {
                         "type": "array",
                         "items": {
