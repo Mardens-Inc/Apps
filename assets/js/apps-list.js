@@ -1,3 +1,12 @@
+import DomBuilder from "./dombuilder.js";
+import Dropdown from "./doms/Dropdown.js";
+import Toggle from "./doms/Toggle.js";
+import DropdownOption from "./doms/DropdownOption.js";
+let dropdown = new Dropdown("test", ["test1", "test2", "test3"]);
+let option = new DropdownOption("test1", "0", true);
+dropdown.addOption(option);
+console.log(dropdown.outerHTML);
+
 $(document).on("dropdowns-loaded", () => {
     $("dialog#add-item-modal dropdown#template").on("change", (_, data) => {
         buildAddAppOptionsFromTemplate(data.value);
