@@ -45,7 +45,7 @@
             <input type="password" name="password" id="password" placeholder="Password" required>
             <label for="password">Password</label>
         </div>
-        <toggle-field id="show-password" value=true>Show Password</toggle-field>
+        <toggle-field id="show-password" value=false>Show Password</toggle-field>
         <button type="submit">Login</button>
     </form>
 
