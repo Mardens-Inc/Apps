@@ -1,6 +1,8 @@
 import Dropdown from "./doms/Dropdown.js";
 import Toggle from "./doms/Toggle.js";
 import DropdownOption from "./doms/DropdownOption.js";
+import ArrayInput from "./doms/ArrayItem.js";
+import FileInput from "./doms/FileInput.js";
 
 $("dialog#add-item-modal drop-down#template").on("change", (_, data) => {
     buildAddAppOptionsFromTemplate(data.value);
@@ -50,10 +52,10 @@ async function buildAddAppOptionsFromTemplate(template) {
                 templateOptions.append(floatingLabel2);
                 break;
             case "color":
-                const floatingLabel3 = $(`<div class="center vertical row"></div>`);
+                const floatingLabel3 = $(`<div class="color-input center vertical row"></div>`);
                 const label3 = $(`<label for="${option.name}" class='fill'>${option.name}</label>`);
                 const text3 = $(`<input type="color" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
-                text3.title = option.description;
+                floatingLabel3.attr("title", option.description);
                 floatingLabel3.append(label3);
                 floatingLabel3.append(text3);
                 templateOptions.append(floatingLabel3);
@@ -96,43 +98,18 @@ async function buildAddAppOptionsFromTemplate(template) {
                 break;
 
             case "file":
-                const floatingLabel8 = $(`<div class="row center vertical file-input"></div>`);
-                const label8 = $(`<label for="${option.name}" class="fill">${option.name}</label>`);
-                const button = $(`<button class="button">File</button>`);
-
-                floatingLabel8.on("click", () => {
-                    let input = document.createElement("input");
-                    input.type = "file";
-                    input.accept = option.extensions.join(",");
-                    input.multiple = option.multiple || false;
-                    input.onchange = (e) => {
-                        // getting a hold of the file reference
-                        var file = e.target.files[0];
-
-                        // setting up the reader
-                        var reader = new FileReader();
-                        reader.readAsDataURL(file); // this is reading as data url
-
-                        // here we tell the reader what to do when it's done reading...
-                        reader.onload = (readerEvent) => {
-                            var content = readerEvent.target.result; // this is the content!
-                            console.log(content);
-                            button.text(file.name);
-                            button.attr("data-value", content);
-                        };
-                    };
-                    input.click();
-                    console.log(input);
-                });
-
-                floatingLabel8.append(label8);
-                floatingLabel8.append(button);
-                templateOptions.append(floatingLabel8);
+                const fileInput = $(`<file-input name="${option.name}" description="${option.description}" extensions="${option.extensions.join(",")}" multiple="${option.multiple}" default="${option.default}"></file-input>`);
+                templateOptions.append(fileInput);
                 break;
+            case "array":
+                const arrayInput = $(`<array-input name="${option.name}" description="${option.description}" default="${option.default.join(",")}"></array-input>`);
+                templateOptions.append(arrayInput);
             default:
                 break;
         }
     }
+
+    templateOptions.append($("<div class='row center vertical fill'><button id='add-item' type='submit' style='margin: auto;width: 200px;'>Add</button></div>"));
 }
 
 async function getTemplateJson(template) {
