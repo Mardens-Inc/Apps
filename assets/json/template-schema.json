@@ -31,7 +31,8 @@
                             "time",
                             "datetime",
                             "textarea",
-                            "file"
+                            "file",
+                            "array"
                         ]
                     },
                     "default": {
