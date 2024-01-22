@@ -46,13 +46,14 @@
             <label for="password">Password</label>
         </div>
         <toggle-field id="show-password" value=false>Show Password</toggle-field>
+        <p class="error"></p>
         <button type="submit">Login</button>
     </form>
 
     <script src="/assets/js/inputs.min.js"></script>
 
     <script>
-        // startLoading();
+        startLoading();
     </script>
 
     <script type="module" src="/assets/js/auth.js"></script>
