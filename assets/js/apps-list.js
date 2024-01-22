@@ -19,7 +19,6 @@ async function buildAddAppOptionsFromTemplate(template) {
     templateOptions.append($(`<p style="text-align: center; font-size: 1.5rem; margin-top: 10px; margin-bottom: 1rem;">${json["description"]}</p>`));
 
     for (const option of json["options"]) {
-        console.log(option);
         switch (option.type) {
             case "select":
                 const options = option.options.map((o) => new DropdownOption(o.name, o.value, o.value == option.default));
