@@ -10,7 +10,7 @@ export default class ArrayInput extends HTMLElement {
         this.option = {
             name: this.getAttribute("name") || name || "",
             description: this.getAttribute("description") || description || "",
-            default: this.getAttribute("default") ? this.getAttribute("default").split(",") : items,
+            default: (this.getAttribute("default") ? this.getAttribute("default").split(",") : items) || [],
             items: [],
         };
         this.$ = $(this);
@@ -62,6 +62,7 @@ export default class ArrayInput extends HTMLElement {
                 e.preventDefault();
                 this.button.click();
             } else if (e.key == "Backspace" && this.textInput.value == "") {
+                if(this.option.items.length == 0) return;
                 let item = this.option.items.pop();
                 this.textInput.value = item;
                 this.setAttribute("value", this.option.items.join(","));
