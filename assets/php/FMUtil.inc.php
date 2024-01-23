@@ -140,28 +140,33 @@ class FileMaker
     {
         // Define the URL for the FileMaker Data API endpoint, including the database name and layout name.
         // The _offset and _limit query parameters are used for pagination.
-        $url = "https://fm.mardens.com/fmi/data/vLatest/databases/";
+        $url = "https://fm.mardens.com/fmi/data/vLatest/databases/".$database."/layouts/";
         $token = FileMaker::getSessionToken($database, base64_encode($username . ":" . $password));
-        // Create a stream context for the HTTP request.
-        $context = stream_context_create(array(
-            'http' => array(
+
+        $options = [
+            'http' => [
                 // Set the HTTP method to GET.
                 'method' => 'GET',
                 // Define the HTTP headers for the request, including the authorization token.
-                'header' => "Authorization: Bearer " . $token . "\r\n" .
-                    "User-Agent: PHP\r\n" .
-                    "Content-Type: application/json\r\n",
+                'header' => [
+                    "Authorization:Bearer " . $token,
+                    "User-Agent: PHP",
+                    "Content-Type: application/json"
+                ],
                 // Set the HTTP body content to an empty JSON object.
                 'content' => "{}",
                 // Ignore HTTP errors and continue to get the content.
                 'ignore_errors' => true,
-            ),
-            'ssl' => array(
+            ],
+            'ssl' => [
                 // Disable SSL peer and host verification.
                 'verify_peer' => false,
                 'verify_peer_name' => false,
-            ),
-        ));
+            ],
+        ];
+
+        // Create a stream context for the HTTP request.
+        $context = stream_context_create($options);
 
         // Send the HTTP request and get the response content.
         $result = file_get_contents($url, false, $context);
@@ -174,15 +179,17 @@ class FileMaker
             return [];
         }
 
-        die($result);
-
+        
         // Decode the JSON response into an associative array.
         $resultArray = json_decode($result, true);
 
-        die(json_encode($resultArray));
+        // map the name of the layouts
+        $resultArray = array_map(function ($item) {
+            return $item['name'];
+        }, $resultArray['response']['layouts']);
 
         // Return the 'data' array from the response.
-        return  $resultArray['response']['layouts'];
+        return  $resultArray;
     }
 
 
