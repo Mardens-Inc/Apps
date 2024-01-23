@@ -11,6 +11,10 @@ input, drop-down, textarea {
     font-size: .9rem;
 }
 
+input {
+    width: calc(100% - 1rem);
+}
+
 textarea {
     resize: none;
     height: 150px;
