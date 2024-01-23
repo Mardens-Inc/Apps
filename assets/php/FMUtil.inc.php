@@ -42,28 +42,32 @@ class FileMaker
      */
     public static function getSessionToken(string $database, string $base64)
     {
+        // encode the database name
+        $database = str_replace(" ", "%20", $database);
         // Define the URL for the FileMaker Data API endpoint
         $url = "https://fm.mardens.com/fmi/data/vLatest/databases/" . $database . "/sessions";
 
-        $options = array(
-            'http' => array(
+        $options = [
+            'http' => [
                 // Set the HTTP method to POST
                 'method' => 'POST',
                 // Define the HTTP headers for the request
-                'header' => "Authorization: Basic " . $base64 . "\r\n" .
-                    "User-Agent: PHP\r\n" .
-                    "Content-Type: application/json\r\n",
+                'header' => [
+                    "Authorization: Basic " . $base64,
+                    "User-Agent: PHP",
+                    "Content-Type: application/json"
+                ],
                 // Set the HTTP body content to an empty JSON object
                 'content' => "{}",
                 // Ignore HTTP errors and continue to get the content
                 'ignore_errors' => true,
-            ),
-            'ssl' => array(
+            ],
+            'ssl' => [
                 // Disable SSL peer and host verification
                 'verify_peer' => false,
                 'verify_peer_name' => false,
-            ),
-        );
+            ],
+        ];
         // Create a stream context for the HTTP request
         $context = stream_context_create($options);
 
@@ -72,14 +76,19 @@ class FileMaker
 
         // If the result is FALSE, an error occurred
         if ($result === FALSE) {
-            // Output an error message
-            echo 'Error: Unable to get content';
             // End the function
-            return "";
+            throw new Exception('Error: Unable to get content');
         }
 
         // Decode the JSON response into an associative array
         $resultArray = json_decode($result, true);
+
+        if($resultArray['messages'][0]['code'] != "0" || $resultArray["response"] == null || $resultArray["response"]["token"] == null) {
+            // End the function
+            throw new Exception(json_encode(["message" => $resultArray['messages'][0]['message'], "code" => $resultArray['messages'][0]['code']]));
+        }
+
+
 
         // Return the token
         return $resultArray['response']['token'];
@@ -138,11 +147,13 @@ class FileMaker
 
     public static function getDatabaseLayouts(string $username, string $password, string $database)
     {
+        // encode the database name
+        $database = str_replace(" ", "%20", $database);
         // Define the URL for the FileMaker Data API endpoint, including the database name and layout name.
         // The _offset and _limit query parameters are used for pagination.
-        $url = "https://fm.mardens.com/fmi/data/vLatest/databases/".$database."/layouts/";
+        $url = "https://fm.mardens.com/fmi/data/vLatest/databases/" . $database . "/layouts/";
         $token = FileMaker::getSessionToken($database, base64_encode($username . ":" . $password));
-
+        if($token == "") return [];
         $options = [
             'http' => [
                 // Set the HTTP method to GET.
@@ -179,7 +190,7 @@ class FileMaker
             return [];
         }
 
-        
+
         // Decode the JSON response into an associative array.
         $resultArray = json_decode($result, true);
 
