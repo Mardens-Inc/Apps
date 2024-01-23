@@ -36,14 +36,14 @@
             "type": "select",
             "default": "",
             "condition": "Import from FileMaker",
-            "populated_from_url": "/api/filemaker/databases?username=pricer&password=mssdb"
+            "populated_from_url": "/api/filemaker/databases?username=admin&password=19MRCC77!"
         },
         {
             "name": "FileMaker Layout",
             "description": "The FileMaker layout to import data from",
             "type": "select",
             "default": "",
-            "populated_from_url": "/api/filemaker/layouts?database={FileMaker Database}?username=pricer&password=mssdb",
+            "populated_from_url": "/api/filemaker/databases/layouts?database={FileMaker Database}&username=admin&password=19MRCC77!",
             "condition": "Import from FileMaker"
         }
     ]
