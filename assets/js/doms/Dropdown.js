@@ -13,11 +13,6 @@ export default class Dropdown extends HTMLElement {
         this.setAttribute("label", label);
         this.value = this.getAttribute("value");
         this.$ = $(this);
-        if (this.$.find(".dropdown-items").length == 0) {
-            const items = $("<div class='dropdown-items'></div>");
-            items.append(this.options);
-            this.$.append(items);
-        }
     }
 
     connectedCallback() {
@@ -26,7 +21,11 @@ export default class Dropdown extends HTMLElement {
         if (this.label == undefined) this.label = this.getAttribute("label");
         if (this.label != undefined) this.$.prepend(`<span class="name">${this.label}</span>`);
         if (this.value != undefined) this.setAttribute("value", this.value);
-
+        if (this.$.find(".dropdown-items").length == 0) {
+            const items = $("<div class='dropdown-items'></div>");
+            items.append(this.options);
+            this.$.append(items);
+        }
         this.options = this.$.find("dropdown-option");
 
         if (this.$.find("dropdown-option[selected]").length != 0) {
@@ -46,6 +45,12 @@ export default class Dropdown extends HTMLElement {
             this.blur();
         });
     }
+
+    rerender() {
+        this.$.html("");
+        this.connectedCallback();
+    }
+
     /**
      * Adds an option to the dropdown.
      * @param {DropdownOption} option The option to add to the dropdown.
