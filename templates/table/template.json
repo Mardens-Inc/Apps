@@ -2,5 +2,49 @@
     "$schema": "https://raw.githubusercontent.com/Mardens-Inc/Apps/main/assets/json/template-schema.json",
     "name": "Table",
     "description": "A simple table",
-    "options": []
+    "options": [
+        {
+            "name": "Icon",
+            "type": "file",
+            "description": "The icon to display in the table",
+            "default": "",
+            "extensions": [
+                ".png",
+                ".jpg",
+                ".jpeg",
+                ".gif",
+                ".svg"
+            ]
+        },
+        {
+            "name": "Database Rows",
+            "description": "The number of rows to display in the table",
+            "type": "array",
+            "default": [
+                "Name"
+            ]
+        },
+        {
+            "name": "Import from FileMaker",
+            "description": "Import data from existing FileMaker database",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "FileMaker Database",
+            "description": "The FileMaker database to import data from",
+            "type": "select",
+            "default": "",
+            "condition": "Import from FileMaker",
+            "populated_from_url": "/api/filemaker/databases?username=pricer&password=mssdb"
+        },
+        {
+            "name": "FileMaker Layout",
+            "description": "The FileMaker layout to import data from",
+            "type": "select",
+            "default": "",
+            "populated_from_url": "/api/filemaker/layouts?database={FileMaker Database}?username=pricer&password=mssdb",
+            "condition": "Import from FileMaker"
+        }
+    ]
 }
