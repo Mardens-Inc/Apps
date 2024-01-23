@@ -27,10 +27,79 @@ async function buildAddAppOptionsFromTemplate(template) {
 
         switch (option.type) {
             case "select":
+                if (option["populated_from_url"]) {
+                    var url = option["populated_from_url"];
+                    if (url.includes("{")) {
+                        const regex = /{([^}]+)}/g;
+                        const matches = [...url.matchAll(regex)];
+                        for (const match of matches) {
+                            const name = match[1];
+                            const e = $(`dialog#add-item-modal #template-options [label="${name}"]`);
+                            e.on("change", async () => {
+                                const value = e.val();
+                                let newUrl = url.replace(match[0], encodeURIComponent(value));
+                                console.log(newUrl);
+
+                                const options = await $.ajax({
+                                    url: newUrl,
+                                    method: "GET",
+                                    dataType: "json",
+                                    beforeSend: () => {
+                                        startLoading();
+                                    },
+                                    complete: () => {
+                                        stopLoading();
+                                    },
+                                    success: (data) => {
+                                        console.log(data);
+                                        return data;
+                                    },
+                                    error: (xhr, status, error) => {
+                                        console.log(error);
+                                        alert(`Error: ${error}`);
+                                        return null;
+                                    },
+                                });
+                                console.log(element.options)
+                                element.options = options.map((o) => new DropdownOption(o, o, false));
+                                element.rerender();
+                            });
+                        }
+
+                        element = new Dropdown(option.name, []);
+                        element.title = option.description;
+                        break;
+                    }
+                    const options = await $.ajax({
+                        url: url,
+                        method: "GET",
+                        dataType: "json",
+                        beforeSend: () => {
+                            startLoading();
+                        },
+                        complete: () => {
+                            stopLoading();
+                        },
+                        success: (data) => {
+                            console.log(data);
+                            return data;
+                        },
+                        error: (xhr, status, error) => {
+                            console.log(error);
+                            alert(`Error: ${error}`);
+                            return null;
+                        },
+                    });
+                    element = new Dropdown(
+                        option.name,
+                        options.map((o) => new DropdownOption(o, o, false))
+                    );
+                    element.title = option.description;
+                    break;
+                }
                 const options = option.options.map((o) => new DropdownOption(o.name, o.value, o.value == option.default));
-                const dropdown = new Dropdown(option.name, options);
-                dropdown.title = option.description;
-                templateOptions.append(dropdown);
+                element = new Dropdown(option.name, options);
+                element.title = option.description;
                 break;
             case "boolean":
                 element = new Toggle(option.name, option.default);
@@ -43,14 +112,14 @@ async function buildAddAppOptionsFromTemplate(template) {
                         conditionals.forEach((o) => {
                             const element = o.element;
                             if (element) {
-                                element.css("display", "block");
+                                $(element).css("display", "block");
                             }
                         });
                     } else {
                         conditionals.forEach((o) => {
                             const element = o.element;
                             if (element) {
-                                element.css("display", "none");
+                                $(element).css("display", "none");
                             }
                         });
                     }
