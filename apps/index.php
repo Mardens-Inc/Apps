@@ -70,7 +70,7 @@
 
     <dialog id="add-item-modal">
         <button onclick="$(`#add-item-modal`)[0].close();" style="position: absolute; right: 1rem"><i class="fa fa-close"></i></button>
-        <form action="javascript:void(0);">
+        <form action="javascript:void(0);" style="margin-bottom: 8rem;">
             <h1>Add Item</h1>
             <div class="floating-input col">
                 <input type="text" name="name" id="name" required placeholder="">
