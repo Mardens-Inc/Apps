@@ -1,4 +1,4 @@
-import Dropdown from "./doms/Dropdown.js";
+ import Dropdown from "./doms/Dropdown.js";
 import Toggle from "./doms/Toggle.js";
 import DropdownOption from "./doms/DropdownOption.js";
 import ArrayInput from "./doms/ArrayItem.js";
@@ -15,198 +15,172 @@ $("dialog#add-item-modal drop-down#template dropdown-option")[1].click();
  */
 async function buildAddAppOptionsFromTemplate(template) {
     const json = await getTemplateJson(template);
-    const templateOptions = $("dialog#add-item-modal #template-options");
-    templateOptions.html("");
-    templateOptions.append($(`<h2>${json["name"]}</h2>`));
-    templateOptions.append($(`<p style="text-align: center; font-size: 1.5rem; margin-top: 10px; margin-bottom: 1rem;">${json["description"]}</p>`));
+    const templateOptions = $("#template-options");
+    templateOptions.empty();
+
+    templateOptions.append(`<h2>${json["name"]}</h2>`);
+    templateOptions.append(`<p style="text-align: center; font-size: 1.5rem; margin-top: 10px; margin-bottom: 1rem;">${json["description"]}</p>`);
+
+    async function handlePopulatedUrl(url, match) {
+        const name = match[1];
+        const e = $(`dialog#add-item-modal #template-options [label="${name}"]`);
+        e.on("change", async () => {
+            const value = e.val();
+            const newUrl = url.replace(match[0], encodeURIComponent(value));
+
+            const options = await fetchData(newUrl);
+            element.options = options.map((o) => new DropdownOption(o, o, false));
+            element.rerender();
+        });
+    }
+
+    async function fetchData(url) {
+        try {
+            startLoading();
+            const options = await $.ajax({
+                url,
+                method: "GET",
+                dataType: "json",
+            });
+            return options;
+        } catch (error) {
+            console.log(error);
+            alert(`Error: ${error}`);
+            return null;
+        } finally {
+            stopLoading();
+        }
+    }
 
     for (const option of json["options"]) {
         const id = option.name.toLowerCase().replace(/[^a-z]/g, "-");
-        console.log(id);
         let element;
 
         switch (option.type) {
             case "select":
                 if (option["populated_from_url"]) {
-                    var url = option["populated_from_url"];
+                    const url = option["populated_from_url"];
                     if (url.includes("{")) {
                         const regex = /{([^}]+)}/g;
                         const matches = [...url.matchAll(regex)];
                         for (const match of matches) {
-                            const name = match[1];
-                            const e = $(`dialog#add-item-modal #template-options [label="${name}"]`);
-                            e.on("change", async () => {
-                                const value = e.val();
-                                let newUrl = url.replace(match[0], encodeURIComponent(value));
-                                console.log(newUrl);
-
-                                const options = await $.ajax({
-                                    url: newUrl,
-                                    method: "GET",
-                                    dataType: "json",
-                                    beforeSend: () => {
-                                        startLoading();
-                                    },
-                                    complete: () => {
-                                        stopLoading();
-                                    },
-                                    success: (data) => {
-                                        console.log(data);
-                                        return data;
-                                    },
-                                    error: (xhr, status, error) => {
-                                        console.log(error);
-                                        alert(`Error: ${error}`);
-                                        return null;
-                                    },
-                                });
-                                console.log(element.options)
-                                element.options = options.map((o) => new DropdownOption(o, o, false));
-                                element.rerender();
-                            });
+                            await handlePopulatedUrl(url, match);
                         }
 
                         element = new Dropdown(option.name, []);
                         element.title = option.description;
                         break;
                     }
-                    const options = await $.ajax({
-                        url: url,
-                        method: "GET",
-                        dataType: "json",
-                        beforeSend: () => {
-                            startLoading();
-                        },
-                        complete: () => {
-                            stopLoading();
-                        },
-                        success: (data) => {
-                            console.log(data);
-                            return data;
-                        },
-                        error: (xhr, status, error) => {
-                            console.log(error);
-                            alert(`Error: ${error}`);
-                            return null;
-                        },
-                    });
-                    element = new Dropdown(
-                        option.name,
-                        options.map((o) => new DropdownOption(o, o, false))
-                    );
+
+                    const options = await fetchData(url);
+                    element = new Dropdown(option.name, options.map((o) => new DropdownOption(o, o, false)));
                     element.title = option.description;
                     break;
                 }
+
                 const options = option.options.map((o) => new DropdownOption(o.name, o.value, o.value == option.default));
                 element = new Dropdown(option.name, options);
                 element.title = option.description;
                 break;
+
             case "boolean":
                 element = new Toggle(option.name, option.default);
                 element.title = option.description;
 
-                // check if any other options have a condition for this option
                 const conditionals = json["options"].filter((o) => o.condition && o.condition == option.name);
                 const update = (value) => {
-                    if (value) {
-                        conditionals.forEach((o) => {
-                            const element = o.element;
-                            if (element) {
-                                $(element).css("display", "block");
-                            }
-                        });
-                    } else {
-                        conditionals.forEach((o) => {
-                            const element = o.element;
-                            if (element) {
-                                $(element).css("display", "none");
-                            }
-                        });
-                    }
+                    conditionals.forEach((o) => {
+                        const element = o.element;
+                        if (element) {
+                            $(element).css("display", value ? "block" : "none");
+                        }
+                    });
                 };
+
                 $(element).on("toggle", (_, e) => {
                     update(e.value);
                 });
+
                 $(document).on("finish-building-options", () => {
                     update(element.value);
                 });
+                break;
 
-                break;
             case "text":
-                element = $(`<div class="floating-input col" id="${id}"></div>`);
-                const label = $(`<label for="${option.name}">${option.name}</label>`);
-                const text = $(`<input type="text" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
-                text.title = option.description;
-                element.append(text);
-                element.append(label);
+                element = buildInputElement("text", option);
                 break;
+
             case "number":
-                element = $(`<div class="floating-input col"></div>`);
-                const label2 = $(`<label for="${option.name}">${option.name}</label>`);
-                const text2 = $(`<input type="number" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
-                text2.title = option.description;
-                element.append(text2);
-                element.append(label2);
+                element = buildInputElement("number", option);
                 break;
+
             case "color":
-                element = $(`<div class="color-input center vertical row"></div>`);
-                const label3 = $(`<label for="${option.name}" class='fill'>${option.name}</label>`);
-                const text3 = $(`<input type="color" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
-                element.attr("title", option.description);
-                element.append(label3);
-                element.append(text3);
+                element = buildColorInputElement(option);
                 break;
+
             case "date":
-                element = $(`<div class="floating-input col"></div>`);
-                const label4 = $(`<label for="${option.name}">${option.name}</label>`);
-                const text4 = $(`<input type="date" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
-                text4.title = option.description;
-                element.append(text4);
-                element.append(label4);
-                break;
             case "time":
-                element = $(`<div class="floating-input col"></div>`);
-                const label5 = $(`<label for="${option.name}">${option.name}</label>`);
-                const text5 = $(`<input type="time" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
-                text5.title = option.description;
-                element.append(text5);
-                element.append(label5);
-                break;
             case "datetime":
-                element = $(`<div class="floating-input col"></div>`);
-                const label6 = $(`<label for="${option.name}">${option.name}</label>`);
-                const text6 = $(`<input type="datetime-local" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
-                text6.title = option.description;
-                element.append(text6);
-                element.append(label6);
+                element = buildInputElement(option.type, option);
                 break;
+
             case "textarea":
-                element = $(`<div class="floating-input col"></div>`);
-                const label7 = $(`<label for="${option.name}">${option.name}</label>`);
-                const text7 = $(`<textarea type="text" placeholder="${option.description}" name="${option.name}">${option.default}</textarea>`);
-                text7.title = option.description;
-                element.append(text7);
-                element.append(label7);
+                element = buildTextareaElement(option);
                 break;
 
             case "file":
                 element = $(`<file-input name="${option.name}" description="${option.description}" extensions="${option.extensions.join(",")}" multiple="${option.multiple}" default="${option.default}"></file-input>`);
                 break;
+
             case "array":
                 element = $(`<array-input name="${option.name}" description="${option.description}" default="${option.default.join(",")}"></array-input>`);
+                break;
+
             default:
                 break;
         }
 
         option.element = element;
-
         templateOptions.append(element);
     }
 
-    templateOptions.append($("<div class='row center vertical fill' style='margin-top: 1rem;'><button id='add-item' type='submit' style='margin: auto;width: 200px;'>Add</button></div>"));
+    templateOptions.append("<div class='row center vertical fill' style='margin-top: 1rem;'><button id='add-item' type='submit' style='margin: auto;width: 200px;'>Add</button></div>");
 
     $(document).trigger("finish-building-options");
 }
+
+function buildInputElement(type, option) {
+    const id = option.name.toLowerCase().replace(/[^a-z]/g, "-");
+    const element = $(`<div class="floating-input col" id="${id}"></div>`);
+    const label = $(`<label for="${option.name}">${option.name}</label>`);
+    const input = $(`<input type="${type}" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
+    input.title = option.description;
+    element.append(input);
+    element.append(label);
+    return element;
+}
+
+function buildColorInputElement(option) {
+    const element = $(`<div class="color-input center vertical row"></div>`);
+    const label = $(`<label for="${option.name}" class='fill'>${option.name}</label>`);
+    const input = $(`<input type="color" placeholder="${option.description}" name="${option.name}" value="${option.default}">`);
+    element.attr("title", option.description);
+    element.append(label);
+    element.append(input);
+    return element;
+}
+
+function buildTextareaElement(option) {
+    const id = option.name.toLowerCase().replace(/[^a-z]/g, "-");
+    const element = $(`<div class="floating-input col"></div>`);
+    const label = $(`<label for="${option.name}">${option.name}</label>`);
+    const textarea = $(`<textarea type="text" placeholder="${option.description}" name="${option.name}">${option.default}</textarea>`);
+    textarea.title = option.description;
+    element.append(textarea);
+    element.append(label);
+    return element;
+}
+
 
 async function getTemplateJson(template) {
     return await $.ajax({
