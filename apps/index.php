@@ -106,7 +106,7 @@
 
 
     <script>
-        // $("#add-item-modal")[0].showModal();
+        $("#add-item-modal")[0].showModal();
     </script>
 
 
