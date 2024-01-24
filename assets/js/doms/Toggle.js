@@ -27,6 +27,10 @@ export default class Toggle extends HTMLElement {
             this.$.trigger("toggle", [{ value: value }]);
         }
     }
+    
+    formAssociatedCallback(form) {
+        return this.value;
+    }
 }
 
 customElements.define("toggle-field", Toggle);
