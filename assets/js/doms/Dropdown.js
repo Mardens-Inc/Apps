@@ -84,6 +84,10 @@ export default class Dropdown extends HTMLElement {
     selectIndex(index) {
         this.selectOption(this.options[index]);
     }
+
+    formAssociatedCallback(form) {
+        return this.value;
+    }
 }
 
 customElements.define("drop-down", Dropdown);
