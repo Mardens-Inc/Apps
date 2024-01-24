@@ -1,0 +1,5 @@
+{
+    "name": "IT Computer Master Database",
+    "description": "Contains all the information about all deployed and inactive computers in the company",
+    "icon": "it.svg"
+}
