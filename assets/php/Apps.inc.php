@@ -25,8 +25,27 @@ class App
         $this->updated_at = $updated_at;
     }
 
-    public static function fromJSON(string $json):App{
+    public static function fromJSON(string $json): App
+    {
         $obj = json_decode($json);
+        if ($obj == null) {
+            throw new Exception("Invalid JSON");
+        }
+        if ($obj->id == null) {
+            $obj->id = "";
+        }
+        if ($obj->created_at == null) {
+            $obj->created_at = date("Y-m-d H:i:s");
+        }
+        if ($obj->updated_at == null) {
+            $obj->updated_at = date("Y-m-d H:i:s");
+        }
+        if($obj->hidden == null) {
+            $obj->hidden = false;
+        }
+        if($obj->additionalInformation == null) {
+            $obj->additionalInformation = "{}";
+        }
         return new App($obj->id, $obj->name, $obj->description, $obj->icon, $obj->template, $obj->hidden, $obj->additionalInformation, $obj->created_at, $obj->updated_at);
     }
 }
@@ -127,5 +146,4 @@ class Apps
         // Get the inserted id and return the added app.
         return $this->getApp($this->hashIds->encode($id));
     }
-
 }
