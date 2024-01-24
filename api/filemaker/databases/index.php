@@ -2,5 +2,10 @@
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/assets/php/FMUtil.inc.php");
 header("Content-Type: application/json");
-$items = FileMaker::getDatabaseNames($_GET["username"], $_GET["password"]);
+
+$config = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/config.json"), true);
+$username = $config["filemaker"]["username"];
+$password = $config["filemaker"]["password"];
+
+$items = FileMaker::getDatabaseNames($username, $password);
 die(json_encode($items));
