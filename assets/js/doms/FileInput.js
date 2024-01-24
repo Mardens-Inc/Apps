@@ -14,6 +14,7 @@ export default class FileInput extends HTMLElement {
             extensions: this.getAttribute("extensions").split(",") || extensions,
             multiple: this.getAttribute("multiple") || multiple,
         };
+        this.value = "";
     }
 
     connectedCallback() {
@@ -28,8 +29,11 @@ export default class FileInput extends HTMLElement {
         reader.onload = (readerEvent) => {
             var content = readerEvent.target.result;
             this.button.textContent = file.name;
-            this.setAttribute("value", content);
+            this.value = content;
         };
+    }
+    formAssociatedCallback(form) {
+        return this.value;
     }
 
     render() {
