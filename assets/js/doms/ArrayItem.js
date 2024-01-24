@@ -13,6 +13,7 @@ export default class ArrayInput extends HTMLElement {
             default: (this.getAttribute("default") ? this.getAttribute("default").split(",") : items) || [],
             items: [],
         };
+        this.value = this.option.items;
         this.$ = $(this);
     }
 
@@ -31,19 +32,21 @@ export default class ArrayInput extends HTMLElement {
         this.textInput.value = "";
         this.itemsContainer.appendChild(itemElement);
         this.setAttribute("value", this.option.items.join(","));
+        this.value = this.option.items;
     }
 
     removeItem(item) {
         this.option.items.splice(this.option.items.indexOf(item), 1);
         this.setAttribute("value", this.option.items.join(","));
         item.remove();
+        this.value = this.option.items;
     }
 
     render() {
         this.innerHTML = `
             <div class="floating-input array-input row">
                 <div class='items row center vertical'></div>
-                <input type="text" placeholder="${this.option.description}" name="${this.option.name}" value="" class="fill">
+                <input type="text" no-form placeholder="${this.option.description}" name="${this.option.name}" value="" class="fill">
                 <label for="${this.option.name}">${this.option.name}</label>
                 <div class="button"><i class="fa fa-add"></i></div>
             </div>
@@ -74,6 +77,10 @@ export default class ArrayInput extends HTMLElement {
         this.option.default.forEach((item) => {
             this.addItem(item);
         });
+        this.value = this.option.items;
+    }
+    formAssociatedCallback(form) {
+        return this.option.items;
     }
 }
 
