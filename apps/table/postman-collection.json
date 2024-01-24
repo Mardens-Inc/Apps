@@ -1,0 +1,1345 @@
+{
+	"info": {
+		"_postman_id": "993df8e3-ba37-4570-a1c2-c5699480a65d",
+		"name": "ITComputers API",
+		"description": "This API provides access to the `computers` table in the database. It supports operations to get a specific computer, get the count of computers, search for computers, and filter computers.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16833182"
+	},
+	"item": [
+		{
+			"name": "Get Computers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:21:56 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "5654"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 2,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"16GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:10:11.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082554\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"16GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:10:32.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082573\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"16GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:13:54.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082582\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"16GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:24:48.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082590\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 6,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": [\n            {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            }\n        ],\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:26:09.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082601\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 7,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": [\n            {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            }\n        ],\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:27:54.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082609\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 8,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"16GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:30:25.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082617\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 9,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": [\n            {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            }\n        ],\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 11:30:37.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082625\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 10,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"16GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 13:30:46.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082633\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 11,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"18GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 13:30:57.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082641\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 12,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"18GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 13:31:19.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082649\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 13,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"18GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 14:20:14.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082658\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    },\n    {\n        \"id\": 14,\n        \"asset_number\": 123456,\n        \"make\": \"Dell\",\n        \"model\": \"XPS 15\",\n        \"condition\": 0,\n        \"device_type\": 0,\n        \"operating_system\": 0,\n        \"primary_user\": \"0\",\n        \"location\": \"Office\",\n        \"additional_information\": {\n            \"ram\": \"18GB\",\n            \"cpu\": \"Intel i5\"\n        },\n        \"notes\": \"No issues\",\n        \"created_date\": {\n            \"date\": \"2024-01-15 14:21:09.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        },\n        \"modified_date\": {\n            \"date\": \"2024-01-15 14:21:56.082665\",\n            \"timezone_type\": 3,\n            \"timezone\": \"America/New_York\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Unique",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php?unique=all",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					],
+					"query": [
+						{
+							"key": "unique",
+							"value": "all"
+						},
+						{
+							"key": "unique",
+							"value": "locations",
+							"disabled": true
+						},
+						{
+							"key": "unique",
+							"value": "make",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "All",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?unique=all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "unique",
+									"value": "all"
+								},
+								{
+									"key": "unique",
+									"value": "locations",
+									"disabled": true
+								},
+								{
+									"key": "unique",
+									"value": "make",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 15:30:55 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1001"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"locations\": [\n        \"50 Ind\",\n        \"50 Industrial\",\n        \"Accounting\",\n        \"Biddeford\",\n        \"Brewer\",\n        \"Calais\",\n        \"Ellsworth\",\n        \"Gray\",\n        \"Houlton\",\n        \"KRDP\",\n        \"Lewiston\",\n        \"Lewiston Mill\",\n        \"Lewiston Store\",\n        \"Lincoln\",\n        \"Locus St\",\n        \"Locust\",\n        \"Madawaska\",\n        \"Presque Isle\",\n        \"\",\n        \"Rumford\",\n        \"Sanford\",\n        \"Scarborough\",\n        \"Waterville KMD\",\n        \"Winslow\",\n        \"LOCATION\",\n        \"Biddeford 31\",\n        \"Brewer 40\",\n        \"Calais 44\",\n        \"Ellsworth 41\",\n        \"Gray 34\",\n        \"Houlton 46\",\n        \"Industrial Drive 24\",\n        \"Lewiston 37\",\n        \"Lewiston Mill 23\",\n        \"Lincoln 42\",\n        \"Locust St.\",\n        \"Madawaska 48\",\n        \"PI 47\",\n        \"Presque Isle 47\",\n        \"Rumford 36\",\n        \"Sanford 30\",\n        \"Scarborough 32\",\n        \"Waterville 38\",\n        \"Winslow 22\",\n        \"Was Rumford\",\n        \"Presque Isle Pricing\",\n        \"KMD\",\n        \"Waterville\",\n        \"Winslow WH\",\n        \"Store\",\n        \"?\",\n        \"Winslow Cage\",\n        \"Winslow 25\",\n        \"Ellsworth 41\\r\",\n        \"Main Office\",\n        \"unassigned\"\n    ],\n    \"make\": [\n        \"HP\",\n        \"Lenovo\",\n        \"\",\n        \"DELL\",\n        \"GATEWAY\",\n        \"ACER\",\n        \"ASUS\",\n        \"Core i3\",\n        \"BeeLink\",\n        \"MSI\",\n        \"Sony\",\n        \"DESKTOP\",\n        \"ACEPC\",\n        \"SAMSUNG\",\n        \"Make\",\n        \"Z83-F\",\n        \"HP 15 TS Notebook PC\",\n        \"KAMRUI MINIPC\",\n        \"Z83-F?\",\n        \"VERIZON\",\n        \"RCA Viking Pro\",\n        \"TCL\",\n        \"Manufacturer\",\n        \"TOSHIBA\",\n        \"Konica Minolta\",\n        \"BROTHER\",\n        \"Lexmark\",\n        \"TSC\"\n    ]\n}"
+				},
+				{
+					"name": "Loctions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?unique=locations",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "unique",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "unique",
+									"value": "locations"
+								},
+								{
+									"key": "unique",
+									"value": "make",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 15:31:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "719"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"locations\": [\n        \"50 Ind\",\n        \"50 Industrial\",\n        \"Accounting\",\n        \"Biddeford\",\n        \"Brewer\",\n        \"Calais\",\n        \"Ellsworth\",\n        \"Gray\",\n        \"Houlton\",\n        \"KRDP\",\n        \"Lewiston\",\n        \"Lewiston Mill\",\n        \"Lewiston Store\",\n        \"Lincoln\",\n        \"Locus St\",\n        \"Locust\",\n        \"Madawaska\",\n        \"Presque Isle\",\n        \"\",\n        \"Rumford\",\n        \"Sanford\",\n        \"Scarborough\",\n        \"Waterville KMD\",\n        \"Winslow\",\n        \"LOCATION\",\n        \"Biddeford 31\",\n        \"Brewer 40\",\n        \"Calais 44\",\n        \"Ellsworth 41\",\n        \"Gray 34\",\n        \"Houlton 46\",\n        \"Industrial Drive 24\",\n        \"Lewiston 37\",\n        \"Lewiston Mill 23\",\n        \"Lincoln 42\",\n        \"Locust St.\",\n        \"Madawaska 48\",\n        \"PI 47\",\n        \"Presque Isle 47\",\n        \"Rumford 36\",\n        \"Sanford 30\",\n        \"Scarborough 32\",\n        \"Waterville 38\",\n        \"Winslow 22\",\n        \"Was Rumford\",\n        \"Presque Isle Pricing\",\n        \"KMD\",\n        \"Waterville\",\n        \"Winslow WH\",\n        \"Store\",\n        \"?\",\n        \"Winslow Cage\",\n        \"Winslow 25\",\n        \"Ellsworth 41\\r\",\n        \"Main Office\",\n        \"unassigned\"\n    ]\n}"
+				},
+				{
+					"name": "Make",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?unique=make",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "unique",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "unique",
+									"value": "locations",
+									"disabled": true
+								},
+								{
+									"key": "unique",
+									"value": "make"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 15:31:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "283"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"make\": [\n        \"HP\",\n        \"Lenovo\",\n        \"\",\n        \"DELL\",\n        \"GATEWAY\",\n        \"ACER\",\n        \"ASUS\",\n        \"Core i3\",\n        \"BeeLink\",\n        \"MSI\",\n        \"Sony\",\n        \"DESKTOP\",\n        \"ACEPC\",\n        \"SAMSUNG\",\n        \"Make\",\n        \"Z83-F\",\n        \"HP 15 TS Notebook PC\",\n        \"KAMRUI MINIPC\",\n        \"Z83-F?\",\n        \"VERIZON\",\n        \"RCA Viking Pro\",\n        \"TCL\",\n        \"Manufacturer\",\n        \"TOSHIBA\",\n        \"Konica Minolta\",\n        \"BROTHER\",\n        \"Lexmark\",\n        \"TSC\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Enums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php?enum=all",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					],
+					"query": [
+						{
+							"key": "enum",
+							"value": "all"
+						},
+						{
+							"key": "enum",
+							"value": "conditions",
+							"disabled": true
+						},
+						{
+							"key": "enum",
+							"value": "device_types",
+							"disabled": true
+						},
+						{
+							"key": "enum",
+							"value": "operating_systems",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "All",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?enum=all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "enum",
+									"value": "all"
+								},
+								{
+									"key": "enum",
+									"value": "conidtions",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "device_types",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "operating_systems",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 14:42:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "269"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"operating_systems\": {\n        \"Windows\": 0,\n        \"MacOS\": 1,\n        \"Linux\": 2,\n        \"ChromeOS\": 3,\n        \"Android\": 4,\n        \"IOS\": 5,\n        \"Umix\": 6,\n        \"Other\": 7\n    },\n    \"device_types\": {\n        \"Desktop\": 0,\n        \"Laptop\": 1,\n        \"Tablet\": 2,\n        \"Phone\": 3,\n        \"Server\": 4,\n        \"Printer\": 5,\n        \"Other\": 6\n    },\n    \"conditions\": {\n        \"New\": 0,\n        \"Good\": 1,\n        \"Used\": 2,\n        \"Refurbished\": 3,\n        \"Broken\": 4\n    }\n}"
+				},
+				{
+					"name": "Conditions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?enum=conditions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "enum",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "conditions"
+								},
+								{
+									"key": "enum",
+									"value": "device_types",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "operating_systems",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 15:06:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"conditions\": {\n        \"New\": 0,\n        \"Good\": 1,\n        \"Used\": 2,\n        \"Refurbished\": 3,\n        \"Broken\": 4\n    }\n}"
+				},
+				{
+					"name": "Device Types",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?enum=device_types",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "enum",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "conditions",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "device_types"
+								},
+								{
+									"key": "enum",
+									"value": "operating_systems",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 15:07:09 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"device_types\": {\n        \"Desktop\": 0,\n        \"Laptop\": 1,\n        \"Tablet\": 2,\n        \"Phone\": 3,\n        \"Server\": 4,\n        \"Printer\": 5,\n        \"Other\": 6\n    }\n}"
+				},
+				{
+					"name": "Operating Systems",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?enum=operating_systems",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "enum",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "conditions",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "device_types",
+									"disabled": true
+								},
+								{
+									"key": "enum",
+									"value": "operating_systems"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 15:07:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "107"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"operating_systems\": {\n        \"Windows\": 0,\n        \"MacOS\": 1,\n        \"Linux\": 2,\n        \"ChromeOS\": 3,\n        \"Android\": 4,\n        \"IOS\": 5,\n        \"Umix\": 6,\n        \"Other\": 7\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Load from FileMaker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php?mirror",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					],
+					"query": [
+						{
+							"key": "mirror",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?mirror",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "mirror",
+									"value": null
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jan 2024 14:34:16 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Mirror successful!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Specific Computer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php?id=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?id=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:23:52 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "433"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"asset_number\": 123456,\n    \"make\": \"Dell\",\n    \"model\": \"XPS 15\",\n    \"condition\": 0,\n    \"device_type\": 0,\n    \"operating_system\": 0,\n    \"primary_user\": \"0\",\n    \"location\": \"Office\",\n    \"additional_information\": {\n        \"ram\": \"16GB\",\n        \"cpu\": \"Intel i5\"\n    },\n    \"notes\": \"No issues\",\n    \"created_date\": {\n        \"date\": \"2024-01-15 11:10:11.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"America/New_York\"\n    },\n    \"modified_date\": {\n        \"date\": \"2024-01-15 14:23:52.704730\",\n        \"timezone_type\": 3,\n        \"timezone\": \"America/New_York\"\n    }\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:23:37 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Failed to get computer\",\n    \"error\": \"No computer found with the provided id\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Computer Count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php?count",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?count",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "count",
+									"value": null
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:24:19 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 13\n}"
+				}
+			]
+		},
+		{
+			"name": "Search Computers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php?search=Dell&limit=10&offset=0&ascending=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Dell"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "ascending",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?search=Dell&limit=10&offset=0&ascending=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Dell"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "ascending",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:24:35 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4374"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"computers\": [\n        {\n            \"id\": 2,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            },\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:10:11.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317580\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            },\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:10:32.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317598\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            },\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:13:54.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317608\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 5,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            },\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:24:48.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317616\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": [\n                {\n                    \"ram\": \"16GB\",\n                    \"cpu\": \"Intel i5\"\n                }\n            ],\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:26:09.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317625\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 7,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": [\n                {\n                    \"ram\": \"16GB\",\n                    \"cpu\": \"Intel i5\"\n                }\n            ],\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:27:54.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317633\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 8,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            },\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:30:25.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317641\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 9,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": [\n                {\n                    \"ram\": \"16GB\",\n                    \"cpu\": \"Intel i5\"\n                }\n            ],\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 11:30:37.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317649\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 10,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": {\n                \"ram\": \"16GB\",\n                \"cpu\": \"Intel i5\"\n            },\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 13:30:46.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317657\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        },\n        {\n            \"id\": 11,\n            \"asset_number\": 123456,\n            \"make\": \"Dell\",\n            \"model\": \"XPS 15\",\n            \"condition\": 0,\n            \"device_type\": 0,\n            \"operating_system\": 0,\n            \"primary_user\": \"0\",\n            \"location\": \"Office\",\n            \"additional_information\": {\n                \"ram\": \"18GB\",\n                \"cpu\": \"Intel i5\"\n            },\n            \"notes\": \"No issues\",\n            \"created_date\": {\n                \"date\": \"2024-01-15 13:30:57.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            },\n            \"modified_date\": {\n                \"date\": \"2024-01-15 14:24:35.317665\",\n                \"timezone_type\": 3,\n                \"timezone\": \"America/New_York\"\n            }\n        }\n    ],\n    \"count\": 10\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Computer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"asset_number\":123456,\r\n    \"make\": \"Dell\",\r\n    \"model\": \"XPS 15\",\r\n    \"condition\": 0,\r\n    \"device_type\": 0,\r\n    \"operating_system\": 0,\r\n    \"primary_user\": \"John Doe\",\r\n    \"location\": \"Office\",\r\n    \"additional_information\": {\r\n        \"ram\": \"18GB\",\r\n        \"cpu\": \"Intel i5\"\r\n    },\r\n    \"notes\": \"No issues\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/db.php",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asset_number\":123456,\r\n    \"make\": \"Dell\",\r\n    \"model\": \"XPS 15\",\r\n    \"condition\": 0,\r\n    \"device_type\": 0,\r\n    \"operating_system\": 0,\r\n    \"primary_user\": \"John Doe\",\r\n    \"location\": \"Office\",\r\n    \"additional_information\": {\r\n        \"ram\": \"18GB\",\r\n        \"cpu\": \"Intel i5\"\r\n    },\r\n    \"notes\": \"No issues\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/db.php",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:21:09 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "434"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 14,\n    \"asset_number\": 123456,\n    \"make\": \"Dell\",\n    \"model\": \"XPS 15\",\n    \"condition\": 0,\n    \"device_type\": 0,\n    \"operating_system\": 0,\n    \"primary_user\": \"0\",\n    \"location\": \"Office\",\n    \"additional_information\": {\n        \"ram\": \"18GB\",\n        \"cpu\": \"Intel i5\"\n    },\n    \"notes\": \"No issues\",\n    \"created_date\": {\n        \"date\": \"2024-01-15 14:21:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"America/New_York\"\n    },\n    \"modified_date\": {\n        \"date\": \"2024-01-15 14:21:09.128006\",\n        \"timezone_type\": 3,\n        \"timezone\": \"America/New_York\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Computer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"asset_number\":123456,\r\n    \"make\": \"Samsung\",\r\n    \"model\": \"XPS 15\",\r\n    \"condition\": 0,\r\n    \"device_type\": 0,\r\n    \"operating_system\": 0,\r\n    \"primary_user\": \"John Doe\",\r\n    \"location\": \"Office\",\r\n    \"additional_information\": {\r\n        \"ram\": \"18GB\",\r\n        \"cpu\": \"Intel i5\"\r\n    },\r\n    \"notes\": \"No issues\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/db.php",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"asset_number\":123456,\r\n    \"make\": \"Samsung\",\r\n    \"model\": \"XPS 15\",\r\n    \"condition\": 0,\r\n    \"device_type\": 0,\r\n    \"operating_system\": 0,\r\n    \"primary_user\": \"John Doe\",\r\n    \"location\": \"Office\",\r\n    \"additional_information\": {\r\n        \"ram\": \"18GB\",\r\n        \"cpu\": \"Intel i5\"\r\n    },\r\n    \"notes\": \"No issues\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/db.php",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:17:37 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Computer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/db.php?id=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"db.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/db.php?id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"db.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 19:17:49 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Computer deleted successfully!\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://it-computers.local",
+			"type": "string"
+		}
+	]
+}
