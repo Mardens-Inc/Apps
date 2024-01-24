@@ -7,7 +7,9 @@ switch ($method) {
     case "GET":
         die(json_encode($apps->getApps()));
     case "POST":
-        break;
+        $data = json_decode(file_get_contents('php://input'), true);
+        $app = App::fromJSON(json_encode($data));
+        die(json_encode($apps->addApp($app)));
     case "DELETE":
         break;
     default:
