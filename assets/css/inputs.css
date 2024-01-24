@@ -13,6 +13,7 @@ input, drop-down, textarea {
 
 input {
     width: calc(100% - 1rem);
+    color-scheme: dark;
 }
 
 textarea {
