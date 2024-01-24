@@ -77,7 +77,7 @@
                 <label for="name">Name</label>
             </div>
             <div class="col">
-                <drop-down label="Template" id="template">
+                <drop-down label="Template" id="template" name="template">
                     <div class="name">Template</div>
                     <div class="dropdown-items">
                         <?php
