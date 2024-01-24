@@ -203,8 +203,6 @@ class FileMaker
         return  $resultArray;
     }
 
-
-
     /**
      * Gets the records from the database.
      * @param int $start The starting record number. (This value is 1-based.)
