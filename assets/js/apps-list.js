@@ -21,7 +21,13 @@ async function buildAddAppOptionsFromTemplate(template) {
     templateOptions.append(`<h2>${json["name"]}</h2>`);
     templateOptions.append(`<p style="text-align: center; font-size: 1.5rem; margin-top: 10px; margin-bottom: 1rem;">${json["description"]}</p>`);
 
-    async function handlePopulatedUrl(url, match) {
+    $("dialog#add-item-modal form").on('submit', async (e) => {
+        let formData = new FormData(e.target);
+        console.log(formData);
+
+    });
+
+    async function handlePopulatedUrl(url, match, element) {
         const name = match[1];
         const e = $(`dialog#add-item-modal #template-options [label="${name}"]`);
         e.on("change", async () => {
@@ -59,16 +65,16 @@ async function buildAddAppOptionsFromTemplate(template) {
         switch (option.type) {
             case "select":
                 if (option["populated_from_url"]) {
+                    element = new Dropdown(option.name, []);
+                    element.title = option.description;
                     const url = option["populated_from_url"];
                     if (url.includes("{")) {
                         const regex = /{([^}]+)}/g;
                         const matches = [...url.matchAll(regex)];
                         for (const match of matches) {
-                            await handlePopulatedUrl(url, match);
+                            await handlePopulatedUrl(url, match, element);
                         }
 
-                        element = new Dropdown(option.name, []);
-                        element.title = option.description;
                         break;
                     }
 
@@ -141,6 +147,7 @@ async function buildAddAppOptionsFromTemplate(template) {
         }
 
         option.element = element;
+        $(element).attr("id", id);
         templateOptions.append(element);
     }
 
