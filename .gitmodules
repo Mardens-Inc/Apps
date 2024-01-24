@@ -1,6 +1,0 @@
-[submodule "assets/lib/fontawesome"]
-	path = assets/lib/fontawesome
-	url = https://github.com/fortawesome/font-awesome
-[submodule "apps/IT-Computers-Database"]
-	path = apps/IT-Computers-Database
-	url = https://github.com/Mardens-Inc/IT-Computers-Database.git
