@@ -1,4 +1,4 @@
- import Dropdown from "./doms/Dropdown.js";
+import Dropdown from "./doms/Dropdown.js";
 import Toggle from "./doms/Toggle.js";
 import DropdownOption from "./doms/DropdownOption.js";
 import ArrayInput from "./doms/ArrayItem.js";
@@ -6,6 +6,10 @@ import FileInput from "./doms/FileInput.js";
 
 $("dialog#add-item-modal drop-down#template").on("change", (_, data) => {
     buildAddAppOptionsFromTemplate(data.value);
+});
+
+$("dialog#add-item-modal form").on("submit", async (e) => {
+    let formData = buildFormJson(e.target);
 });
 
 $("dialog#add-item-modal drop-down#template dropdown-option")[1].click();
@@ -20,12 +24,6 @@ async function buildAddAppOptionsFromTemplate(template) {
 
     templateOptions.append(`<h2>${json["name"]}</h2>`);
     templateOptions.append(`<p style="text-align: center; font-size: 1.5rem; margin-top: 10px; margin-bottom: 1rem;">${json["description"]}</p>`);
-
-    $("dialog#add-item-modal form").on('submit', async (e) => {
-        let formData = new FormData(e.target);
-        console.log(formData);
-
-    });
 
     async function handlePopulatedUrl(url, match, element) {
         const name = match[1];
@@ -79,7 +77,10 @@ async function buildAddAppOptionsFromTemplate(template) {
                     }
 
                     const options = await fetchData(url);
-                    element = new Dropdown(option.name, options.map((o) => new DropdownOption(o, o, false)));
+                    element = new Dropdown(
+                        option.name,
+                        options.map((o) => new DropdownOption(o, o, false))
+                    );
                     element.title = option.description;
                     break;
                 }
@@ -148,6 +149,7 @@ async function buildAddAppOptionsFromTemplate(template) {
 
         option.element = element;
         $(element).attr("id", id);
+        if ($(element).attr("name") == null) $(element).attr("name", id);
         templateOptions.append(element);
     }
 
@@ -188,7 +190,6 @@ function buildTextareaElement(option) {
     return element;
 }
 
-
 async function getTemplateJson(template) {
     return await $.ajax({
         url: `/templates/${template}/template.json`,
@@ -209,4 +210,20 @@ async function getTemplateJson(template) {
             return null;
         },
     });
+}
+
+function buildFormJson(form) {
+    const data = {};
+    const inputs = $(form).find("input, textarea, select, drop-down, array-input, file-input, toggle-field");
+
+    for (const input of inputs) {
+        if(input.getAttribute("no-form") != null) continue;
+        const name = input.getAttribute("name").toLowerCase().replace(/[^a-z]/g, "-");
+        const value = input.value;
+        data[name] = value;
+    }
+
+    console.log(data);
+
+    return data;
 }
