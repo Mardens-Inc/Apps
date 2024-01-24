@@ -1,0 +1,4 @@
+vendor/
+hash
+*.log
+composer.lock
