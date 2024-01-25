@@ -1,20 +1,19 @@
 import Dropdown from "./doms/Dropdown.js";
 import Toggle from "./doms/Toggle.js";
 import DropdownOption from "./doms/DropdownOption.js";
-import ArrayInput from "./doms/ArrayItem.js";
-import FileInput from "./doms/FileInput.js";
 
-$("dialog#add-item-modal drop-down#template").on("change", (_, data) => {
-    buildAddAppOptionsFromTemplate(data.value);
+$("dialog#add-item-modal drop-down#template").on("change", async (_, data) => {
+    await buildAddAppOptionsFromTemplate(data.value);
 });
 
 $("dialog#add-item-modal form").on("submit", async (e) => {
     let formData = buildFormJson(e.target);
+    console.log(formData);
 });
 
 $("dialog#add-item-modal drop-down#template dropdown-option")[1].click();
 /**
- *
+ * Builds the options for the add app modal from the given template.
  * @param {string} template The template to build the options from.
  */
 async function buildAddAppOptionsFromTemplate(template) {
@@ -41,12 +40,11 @@ async function buildAddAppOptionsFromTemplate(template) {
     async function fetchData(url) {
         try {
             startLoading();
-            const options = await $.ajax({
+            return await $.ajax({
                 url,
                 method: "GET",
                 dataType: "json",
             });
-            return options;
         } catch (error) {
             console.log(error);
             alert(`Error: ${error}`);
@@ -85,7 +83,7 @@ async function buildAddAppOptionsFromTemplate(template) {
                     break;
                 }
 
-                const options = option.options.map((o) => new DropdownOption(o.name, o.value, o.value == option.default));
+                const options = option.options.map((o) => new DropdownOption(o.name, o.value, o.value === option.default));
                 element = new Dropdown(option.name, options);
                 element.title = option.description;
                 break;
@@ -94,7 +92,7 @@ async function buildAddAppOptionsFromTemplate(template) {
                 element = new Toggle(option.name, option.default);
                 element.title = option.description;
 
-                const conditionals = json["options"].filter((o) => o.condition && o.condition == option.name);
+                const conditionals = json["options"].filter((o) => o.condition && o.condition === option.name);
                 const update = (value) => {
                     conditionals.forEach((o) => {
                         const element = o.element;
@@ -183,7 +181,7 @@ function buildTextareaElement(option) {
     const id = option.name.toLowerCase().replace(/[^a-z]/g, "-");
     const element = $(`<div class="floating-input col"></div>`);
     const label = $(`<label for="${option.name}">${option.name}</label>`);
-    const textarea = $(`<textarea type="text" placeholder="${option.description}" name="${option.name}">${option.default}</textarea>`);
+    const textarea = $(`<textarea id="${id}" placeholder="${option.description}" name="${option.name}">${option.default}</textarea>`);
     textarea.title = option.description;
     element.append(textarea);
     element.append(label);
@@ -219,8 +217,7 @@ function buildFormJson(form) {
     for (const input of inputs) {
         if(input.getAttribute("no-form") != null) continue;
         const name = input.getAttribute("name").toLowerCase().replace(/[^a-z]/g, "-");
-        const value = input.value;
-        data[name] = value;
+        data[name] = input.value;
     }
 
     console.log(data);
