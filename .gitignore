@@ -2,3 +2,5 @@ vendor/
 *.log
 composer.lock
 config.json
+.idea/
+/assets/lib/mardens-auth-lib.js
