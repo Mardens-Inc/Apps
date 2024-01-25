@@ -1,26 +1,32 @@
 const url = `${window.location.protocol}//auth${window.location.hostname.replace(window.location.hostname.split(".")[0], "")}/`;
-import(url)
+
+import("/assets/lib/mardens-auth-lib.js")
     .then(async (Authentication) => {
         // You can use Authentication in this block
         Authentication = Authentication.default;
-        const auth = new Authentication(window.location.protocol == "http:");
+        const auth = new Authentication(window.location.protocol === "http:");
 
         try {
             let response = await auth.loginWithTokenFromCookie();
-            if (response == false) {
-                if (window.location.pathname != "/") {
+            if (response === false) {
+                if (window.location.pathname !== "/") {
                     window.location.href = "/";
                 }
             } else {
-                if (window.location.pathname == "/") {
+                if (window.location.pathname === "/") {
                     window.location.href = "/apps";
                 }
             }
             stopLoading();
         } catch (error) {
-            console.log(error.responseJSON);
-            if (window.location.pathname != "/") {
-                window.location.href = "/";
+
+            if (error.responseJSON === undefined) {
+                console.error(error);
+            } else {
+                console.error(error.responseJSON);
+                if (window.location.pathname !== "/") {
+                    window.location.href = "/";
+                }
             }
         }
         stopLoading();
