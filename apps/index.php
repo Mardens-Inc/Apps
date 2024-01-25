@@ -31,94 +31,93 @@
 </head>
 
 <body>
-    <header>
-        <button id="logout"> <i class="fa fa-lock"></i> <span>Logout</span></button>
-        <h1><span class="yellow">Apps</span></h1>
-        <h2>Created for Mardens Surplus & Salvage.</h2>
-        <form action="javascript:void(0);" class="search-area">
-            <input type="search" name="search" id="search" required placeholder="Search...">
-            <button type="submit" name="submit" id="submit"><i class="fas fa-search"></i></button>
-            <div id="add-new" class="button" onclick="$(`#add-item-modal`)[0].showModal()"><i class="fas fa-add"></i></div>
-        </form>
-    </header>
-    <div class="grid" id="app-list">
-        <?php
-        $apps = scandir(__DIR__);
-        foreach ($apps as $app) {
-            if (is_dir($app) && file_exists("$app/app.json") && file_exists("$app/index.php")) {
-                $json = json_decode(file_get_contents("$app/app.json"), true);
+<header>
+    <button id="logout"><i class="fa fa-lock"></i> <span>Logout</span></button>
+    <h1><span class="yellow">Apps</span></h1>
+    <h2>Created for Mardens Surplus & Salvage.</h2>
+    <form action="javascript:void(0);" class="search-area">
+        <input type="search" name="search" id="search" required placeholder="Search...">
+        <button type="submit" name="submit" id="submit"><i class="fas fa-search"></i></button>
+        <div id="add-new" class="button" onclick="$(`#add-item-modal`)[0].showModal()"><i class="fas fa-add"></i></div>
+    </form>
+</header>
+<div class="grid" id="app-list">
+    <?php
+    $apps = scandir(__DIR__);
+    foreach ($apps as $app) {
+        if (is_dir($app) && file_exists("$app/app.json") && file_exists("$app/index.php")) {
+            $json = json_decode(file_get_contents("$app/app.json"), true);
 
-                $name = $json["name"];
-                $icon = $json["icon"];
-                if ($icon == null) {
-                    $icon = "unknown.svg";
-                }
-                $description = $json["description"];
+            $name = $json["name"];
+            $icon = $json["icon"];
+            if ($icon == null) {
+                $icon = "unknown.svg";
+            }
+            $description = $json["description"];
 
-                if ($app == "." || $app == ".." || $app == "index.php") continue;
-                echo "
+            if ($app == "." || $app == ".." || $app == "index.php") continue;
+            echo "
                 <a class='app-item' href='/apps/$app/' title='$name - $description'>
                 <img src='/assets/images/icons/$icon' />
                 <p class='name'>$name</p>
                 <p class='description'>$description</p>
                 </a>";
-            }
         }
-        ?>
-    </div>
+    }
+    ?>
+</div>
 
 
-    <dialog id="add-item-modal">
-        <button onclick="$(`#add-item-modal`)[0].close();" style="position: absolute; right: 1rem"><i class="fa fa-close"></i></button>
-        <form action="javascript:void(0);" style="margin-bottom: 8rem;">
-            <h1>Add Item</h1>
-            <div class="floating-input col">
-                <input type="text" name="name" id="name" required placeholder="">
-                <label for="name">Name</label>
-            </div>
-            <div class="col">
-                <drop-down label="Template" id="template" name="template">
-                    <div class="name">Template</div>
-                    <div class="dropdown-items">
-                        <?php
-                        $templates = scandir($_SERVER['DOCUMENT_ROOT'] . "/templates");
-                        foreach ($templates as $template) {
-                            if ($template == "." || $template == ".." || $template == "index.php") continue;
-                            if (is_dir($_SERVER['DOCUMENT_ROOT'] . "/templates/$template")) {
-                                if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json")) {
-                                    $json = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json"), true);
-                                    $name = $json["name"];
-                                    echo "<dropdown-option value='$template'>$name</dropdown-option>";
-                                }
+<dialog id="add-item-modal">
+    <button onclick="$(`#add-item-modal`)[0].close();" style="position: absolute; right: 1rem"><i
+                class="fa fa-close"></i></button>
+    <form action="javascript:void(0);" style="margin-bottom: 8rem;">
+        <h1>Add Item</h1>
+        <div class="floating-input col">
+            <input type="text" name="name" id="name" required placeholder="">
+            <label for="name">Name</label>
+        </div>
+        <div class="col">
+            <drop-down label="Template" id="template" name="template">
+                <div class="name">Template</div>
+                <div class="dropdown-items">
+                    <?php
+                    $templates = scandir($_SERVER['DOCUMENT_ROOT'] . "/templates");
+                    foreach ($templates as $template) {
+                        if ($template == "." || $template == ".." || $template == "index.php") continue;
+                        if (is_dir($_SERVER['DOCUMENT_ROOT'] . "/templates/$template")) {
+                            if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json")) {
+                                $json = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/templates/$template/template.json"), true);
+                                $name = $json["name"];
+                                echo "<dropdown-option value='$template'>$name</dropdown-option>";
                             }
                         }
-                        ?>
-                    </div>
-                </drop-down>
-            </div>
+                    }
+                    ?>
+                </div>
+            </drop-down>
+        </div>
 
-            <div id="template-options">
+        <div id="template-options">
 
-            </div>
+        </div>
 
-        </form>
-    </dialog>
-
-
-    <script>
-        $("#add-item-modal")[0].showModal();
-    </script>
+    </form>
+</dialog>
 
 
+<script>
+    $("#add-item-modal")[0].showModal();
+</script>
 
 
-    <script type="module" src="/assets/js/apps-list.js"></script>
-    <script src="/assets/js/inputs.min.js"></script>
-    <script>
-        startLoading();
-    </script>
+<script type="module" src="/assets/js/apps-list.js"></script>
+<script src="/assets/js/inputs.min.js"></script>
+<script>
+    startLoading();
+</script>
 
-    <script type="module" src="/assets/js/auth.js"></script>
+<script type="module" src="/assets/js/auth.js"></script>
 
 </body>
 
